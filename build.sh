@@ -27,7 +27,7 @@ echo "==> Branch:      ${BRANCH}"
 echo "==> Target repo: ${IMAGE_NAME}"
 echo "==> Tag:         ${IMAGE_TAG}"
 
-docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" -t "${IMAGE_NAME}:latest" .
+DOCKER_BUILDKIT=0 docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" -t "${IMAGE_NAME}:latest" .
 
 echo "==> Build complete: ${IMAGE_NAME}:${IMAGE_TAG}"
 
