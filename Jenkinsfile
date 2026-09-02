@@ -17,7 +17,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDS = credentials('dockerhub-credentials')
     DOCKERHUB_USER  = 'yogabharath'
-    EC2_HOST        = 'ubuntu@15.252.183.1'
+    EC2_HOST        = 'ubuntu@172.31.12.161'
     SSH_CREDS       = 'ec2-ssh-key'
   }
 
