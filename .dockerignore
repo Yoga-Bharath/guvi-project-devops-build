@@ -1,0 +1,13 @@
+.git
+.gitignore
+.github
+Jenkinsfile
+README.md
+SUBMISSION.md
+docker-compose.yml
+build.sh
+deploy.sh
+prometheus
+alertmanager
+*.log
+.env

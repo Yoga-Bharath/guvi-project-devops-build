@@ -1,0 +1,26 @@
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node/npm files if development source is added later
+node_modules/
+npm-debug.log*
+
+# Jenkins/local files
+jenkins_home/

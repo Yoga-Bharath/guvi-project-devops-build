@@ -1,0 +1,7 @@
+services:
+  web:
+    image: ${IMAGE_NAME:-devops-build:local}
+    container_name: devops-build-app
+    ports:
+      - "80:80"
+    restart: unless-stopped
