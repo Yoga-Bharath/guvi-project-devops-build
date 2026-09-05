@@ -15,10 +15,10 @@ pipeline {
   options {
     disableConcurrentBuilds()
     timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '10'))   // keeps only the last 10 builds' workspaces/logs
   }
 
   stages {
-
     stage('Checkout') {
       steps {
         checkout scm
@@ -38,14 +38,11 @@ pipeline {
       steps {
         sh '''
           . ./.last_build.env
-
           echo "${DOCKERHUB_CREDS_PSW}" | docker login \
             -u "${DOCKERHUB_CREDS_USR}" \
             --password-stdin
-
           docker push "${IMAGE_NAME}:${IMAGE_TAG}"
           docker push "${IMAGE_NAME}:latest"
-
           docker logout
         '''
       }
@@ -55,9 +52,7 @@ pipeline {
       steps {
         sh '''
           . ./.last_build.env
-
           chmod +x deploy.sh
-
           DOCKERHUB_USER="${DOCKERHUB_USER}" \
           REPO="${REPO}" \
           IMAGE_TAG=latest \
@@ -71,11 +66,9 @@ pipeline {
     always {
       sh 'docker logout || true'
     }
-
     success {
       echo "Pipeline succeeded for branch ${env.BRANCH_NAME}"
     }
-
     failure {
       echo "Pipeline FAILED for branch ${env.BRANCH_NAME}"
     }
