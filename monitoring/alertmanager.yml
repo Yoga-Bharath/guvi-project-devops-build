@@ -1,0 +1,18 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'rk.yogapriya@gmail.com'
+  smtp_auth_username: 'rk.yogapriya@gmail.com'
+  smtp_auth_password: 'dets bkwu tbif ywuq'
+  smtp_require_tls: true
+
+route:
+  receiver: 'email-alerts'
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+
+receivers:
+  - name: 'email-alerts'
+    email_configs:
+      - to: 'yogapriya.rajalingam@gmail.com'
+        send_resolved: true

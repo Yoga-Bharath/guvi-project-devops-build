@@ -1,0 +1,11 @@
+groups:
+  - name: app-health
+    rules:
+      - alert: ApplicationDown
+        expr: probe_success == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Application is DOWN ({{ $labels.instance }})"
+          description: "HTTP probe for {{ $labels.instance }} has failed for more than 1 minute."
