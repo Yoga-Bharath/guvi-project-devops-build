@@ -15,7 +15,7 @@ pipeline {
   options {
     disableConcurrentBuilds()
     timestamps()
-    buildDiscarder(logRotator(numToKeepStr: '10'))   // keeps only the last 10 builds' workspaces/logs
+    buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
   stages {
@@ -43,8 +43,10 @@ pipeline {
             --password-stdin
           docker push "${IMAGE_NAME}:${IMAGE_TAG}"
           docker push "${IMAGE_NAME}:latest"
-          docker logout
         '''
+        // NOTE: no "docker logout" here anymore — Deploy stage below needs to
+        // stay authenticated to pull from the PRIVATE devops-build-prod repo.
+        // We log out exactly once, in post{always{}}, after Deploy has run.
       }
     }
 
