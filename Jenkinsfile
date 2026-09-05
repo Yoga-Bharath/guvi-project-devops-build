@@ -3,20 +3,12 @@
 // Docker Hub repo (dev vs prod) based on branch, then deploys it locally
 // on the Jenkins EC2 server.
 //
-// Required Jenkins credentials:
-//   dockerhub-credentials -> Username/Password (or access token) for Docker Hub
-//
-// Required Jenkins plugins:
-//   Docker Pipeline, GitHub Integration
-//
-// Required job type:
-//   Multibranch Pipeline
 
 pipeline {
   agent any
 
   environment {
-    DOCKERHUB_CREDS = credentials('dockerhub-credentials')
+    DOCKERHUB_CREDS = credentials('dockerhub-creds')
     DOCKERHUB_USER  = 'yogabharath'
   }
 
